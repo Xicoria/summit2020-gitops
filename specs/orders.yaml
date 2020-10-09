@@ -19,7 +19,17 @@ paths:
       x-kong-plugin-mocking:
         enabled: true
         config:
-          api_specification_filename: orders.yaml     
+          api_specification_filename: orders.yaml   
+      x-kong-plugin-rate-limiting-advanced:
+        enabled: true
+        config:
+          limit:
+          - 3
+          window_size:
+          - 10
+          sync_rate: -1
+          strategy: cluster
+          window_type: sliding
       responses:
         '200':
           description: Order object
